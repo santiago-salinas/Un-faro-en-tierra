@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fin del Viaje</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: monospace;
+        font-size: 25px;
+        text-align: center;
+
+        background-image: url("1.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    p {
+        text-align: center;
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-bottom: 20px;
+        text-shadow: 0px 0px 20px #ffffff;
+        opacity: 1;
+        transition: opacity 0.2s;
+    }
+
+    h1 {
+        text-shadow: 0px 0px 20px #ffffff;
+    }
+
+    .hide {
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    #myVideo {
+        position: fixed;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+
+        display: block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+
+    .content {
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+        color: #f1f1f1;
+        height: 320px;
+
+        width: 100%;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    button {
+        font-family: monospace;
+        width: 20%;
+        font-size: 20px;
+        padding: 10px;
+        border: 3px solid rgba(255, 255, 255, 0.096);
+        background: #000;
+        color: rgb(145, 229, 149);
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 25px;
+        text-shadow: 0px 0px 20px #ffffff8f;
+        transition: color 1s;
+        transition: width 1s;
+        transition: background-color 0.5s;
+    }
+
+
+    .dos {
+        color: rgb(68, 191, 255);
+        font-style: italic;
+    }
+
+    .dos:hover {
+        background-color: rgb(68, 191, 255);
+        color: black;
+    }
+
+    button:hover {
+        background-color: rgb(145, 229, 149);
+        color: black;
+    }
+
+
+    @media only screen and (max-width: 600px) {
+        body {
+            font-size: 25px;
+
+        }
+
+        p {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .content {
+            height: 100%;
+        }
+
+        button {
+            font-family: monospace;
+            width: 250px;
+            font-size: 20px;
+            padding: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.096);
+        }
+
+        .opciones {
+            position: fixed;
+            bottom: 0;
+            margin-bottom: 50px;
+        }
+    }
+</style>
+
+<body id="body">
+
+    <video autoplay mute loop disablePictureInPicture id="myVideo" style="pointer-events: none;">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <div id="div" class="content">
+        <h1 id="h1">Un Faro en Tierra</h1>
+        <p id="text">Estudio Giraluna</p>
+        <p id="text2">Gonzalo Salinas y Santiago Salinas</p>
+        <button id="start" onclick="inicio()">Iniciar</button>
+        <div class="opciones">
+
+
+            <button id="opcion1" onclick="decision1()" class="dos">Se cansó pila</button>
+            <button id="opcion2" onclick="decision2()" class="dos">Creo que se decepcionó</button>
+
+            <button id="opcion3" onclick="decision3()" class="">No pasa nada. Es un pueblo tranquilo.</button>
+            <button id="opcion4" onclick="decision4()" class="">Cuando era chico jugaba a que era una
+                caverna.</button>
+
+            <button id="opcion5" onclick="decision5()" class="">Perdón, me pierdo un poco en mi cabeza cuando
+                hablo de esto.</button>
+
+            <button id="opcion6" onclick="decision6()" class="dos">¿No mejora el negocio?</button>
+            <button id="opcion7" onclick="decision7()" class="dos">No sos el único.</button>
+
+            <button id="opcion8" onclick="decision8()" class="dos">Estoy pensando en volver a trabajar.</button>
+
+            <button id="opcion9" onclick="decision9()" class="">Vos sabés que no tiene las mejores notas.</button>
+            <button id="opcion10" onclick="decision10()" class="dos">¿Es por la grafomanía?</button>
+
+
+        </div>
+
+    </div>
+
+    <script>
+        var video = document.getElementById("myVideo");
+        var start = document.getElementById("start");
+
+        opcion1.style.display = "none";
+        opcion2.style.display = "none";
+        opcion2.style.display = "none";
+        opcion3.style.display = "none";
+        opcion4.style.display = "none";
+        opcion5.style.display = "none";
+        opcion6.style.display = "none";
+        opcion7.style.display = "none";
+        opcion8.style.display = "none";
+        opcion9.style.display = "none";
+        opcion10.style.display = "none";
+
+        var titulo = document.getElementById("h1");
+        var text = document.getElementById("text");
+        var text2 = document.getElementById("text2");
+        async function inicio() {
+            // body.requestFullscreen({navigationUI: 'hide'})
+            div.style.bottom = 0;
+            titulo.style.display = "none";
+            start.style.display = "none";
+            text.classList.add("hide");
+            text2.classList.add("hide");
+            video.play();
+            video.style.display = "block";
+            text.innerHTML = "";
+            text2.innerHTML = "";
+
+            await sleep(3500);
+            await textshow("Falta poco para llegar a los accesos de Montevideo.", 1);
+            await textshow("Ya casi termina este día.", 1);
+            await textshow("Se me hizo eterno.", 1);
+
+            await textshow("", 1);
+
+            await textshow("No la veo por el retrovisor.", 1);
+            await textshow("¿Sigue dormida?", 1);
+
+            await textshow("Tirada en el asiento de atrás.", 2);
+            await textshow("Totalmente planchada.", 2, 1);
+            opcion1.style.display = "inline";
+            opcion2.style.display = "inline";
+        }
+
+        async function decision1() {
+            opcion1.style.display = "none";
+            opcion2.style.display = "none";
+
+            await textshow("Se cansó pila.", 2);
+            await textshow("Anduvo corriendo por todos lados.", 2);
+            await textshow("Es enorme la casa.", 2);
+            await textshow("Es gigante. Nunca me acostumbré.", 1);
+            await textshow("Yo misma estuve a punto de perderme.", 2);
+            await textshow("Y tenía miedo de perderla de vista, y que se escapara para afuera.", 2, 1);
+
+            opcion3.style.display = "inline";
+            opcion4.style.display = "inline";
+        }
+
+        async function decision2() {
+            opcion1.style.display = "none";
+            opcion2.style.display = "none";
+
+            await textshow("Creo que se decepcionó.", 2);
+            await textshow("Quería conocer a su abuelo. Es el único que tiene, después de todo.", 2);
+
+            await textshow("Hubiera preferido que no viniera.", 1);
+
+            await textshow("No molestó a nadie.", 2);
+
+            await textshow("¿No rayó nada?", 1);
+
+            await textshow("No creo.", 2);
+            await textshow("Espero que se le empiece a ir ahora que está más grande.", 2);
+
+            await textshow("¿Qué dice la psicóloga?", 1);
+
+            await textshow("", 1);
+
+            await textshow("No hablemos de eso ahora.", 2);
+
+            await textshow("", 1);
+
+            await textshow("Bueno.", 1);
+            await textshow("Pero igual no es por ella que me habría gustado venir en otro momento.", 1);
+            await textshow("Es más bien por él.", 1);
+            await textshow("Y no quería que me viera enojarme con mi viejo tampoco.", 1);
+
+            await textshow("Tu padre ya era un hombre mayor cuando nos casamos.", 2);
+            await textshow("Y el tiempo no se detiene.", 2);
+
+            await textshow(
+                "Ahora, tan cerca del final, me gustaría perdonarlo por no haber ido a nuestro casamiento.", 1);
+            await textshow("Por haberte faltado el respeto, y ni siquiera acceder a verte a vos o a su nieta. ", 1);
+            await textshow("Por apenas hablarme en estos últimos años.", 1);
+            await textshow("Por eso y por todas las cosas que pasaron cuando era chico. Lo intento, pero no puedo.",
+                1);
+            await textshow("Y ahora....", 1);
+            await textshow("Ahora quién sabe cuánto tiempo queda.", 1);
+            await textshow("Para tratar de entenderlo.", 1);
+            await textshow("O que me entienda.", 1);
+            await textshow("Quizás es todo inútil.", 1);
+            await textshow("No me gusta pensar eso, pero quizás es cierto.", 1, 1);
+
+            opcion5.style.display = "inline";
+        }
+
+        async function decision3() {
+            opcion3.style.display = "none";
+            opcion4.style.display = "none";
+
+            await textshow("No pasa nada.", 1);
+            await textshow("Es un pueblo tranquilo.", 1);
+            await textshow("Existe hace doscientos años, y lo más memorable fue la construcción del faro.", 1);
+
+            await textshow("Quería preguntarte por eso.", 2);
+            await textshow("¿Por qué hay un faro?", 2);
+            await textshow("Es un pueblito perdido en el medio del campo, a kilómetros y kilómetros de la costa.",
+                2);
+
+            await textshow("Lo construyó un tatarabuelo mío o algo así.", 1);
+            await textshow("Nunca ofreció una explicación.", 1);
+            await textshow("Supongo que eso de no dar razones a nadie viene de familia,", 1);
+            await textshow("porque mi padre es igual, incluso ahora en sus últimas.", 1);
+
+            await textshow("", 2);
+
+            await textshow("Ese faro es un desperdicio.", 2);
+            await textshow("Mi teoría es que fue un intento de atractivo turístico que no resultó.", 1);
+            await textshow("No es como que haya una historia oficial del pueblo para corroborarlo ni nada.", 1);
+            await textshow("Se quedará como una teoría.", 1);
+
+            await textshow("¿Cómo fue pasar los veranos en un pueblo tan extraño?", 2);
+            await textshow("Creo que algo de la extrañeza de ese lugar me acompaña a todos lados.", 1);
+            await textshow(
+                "A pesar de que sólo veníamos un par de meses al año, se volvió parte de mí, de una forma fundamental e ineludible.",
+                1);
+            await textshow("Creo que por eso me demoré tanto en traerte.", 1);
+
+            await textshow("Me contaste sobre el pueblo cuando nos conocimos,", 2);
+            await textshow("y creo que recién ahora terminé de entender qué tan en serio hablabas", 2);
+            await textshow("cuando dijiste que era un lugar detenido en el tiempo.", 2);
+
+            await textshow("Cada rincón de Faro en Tierra tiene un detalle arquitectónico o histórico producido por familiares míos.",1);
+            await textshow("Es un pequeño rincón privado del mundo, donde pudieron hacer y deshacer a su antojo por ser la única familia pudiente.",1);
+            await textshow("En cambio, en esa atmósfera asfixiante y fríamente determinada, el resto de la gente sólo aporto un desdén por nosotros.",1);
+            await textshow("Una lejanía quieta y muda.", 1, 1);
+
+            opcion5.style.display = "inline";
+        }
+
+        async function decision4() {
+            opcion3.style.display = "none";
+            opcion4.style.display = "none";
+
+            await textshow("Cuando era chico jugaba a que era una caverna.", 1);
+            await textshow("La exploraba todo el tiempo, y te juro que creía que cambiaba,", 1);
+            await textshow("imperceptiblemente,", 1);
+            await textshow("poco a poco,", 1);
+            await textshow("todos los días.", 1);
+            await textshow("Es demasiado grande la casa para vivir solo con mi madre.", 1);
+            await textshow("Y mi padre,", 1);
+            await textshow("", 1);
+            await textshow("cuando estaba.", 1);
+            await textshow("Se iba al cuartel y no volvía por semanas.", 1);
+            await textshow("El verano parecía extenderse una eternidad.", 1);
+            await textshow("Fue una infancia muy solitaria.", 1);
+            await textshow("La casa de Montevideo también es enorme, pero esa ya la conocés.", 1);
+            await textshow("Y acá para peor no había muchos niños en el pueblo.", 1);
+            await textshow("Nunca hubo muchos.", 1);
+
+            await textshow("Saqué a pasear a Aurora en la tarde, después del almuerzo.", 2);
+            await textshow("Me llamó la atención la cantidad de gente mayor que hay.", 2);
+
+            await textshow("Y... no sé si no son los mismos.", 1);
+            await textshow("Recuerdo caras viejas, desde que era chico.", 1);
+            await textshow("El resto de la gente no nos hablaba.", 1);
+            await textshow("No de ninguna forma significativa.", 1);
+            await textshow("Un hola por compromiso si mi madre iba al almacén.", 1);
+            await textshow("Aunque por lo general iba la sirvienta, que era la que cuidaba la casa todo el año.",
+                1);
+            await textshow("La única residente permanente.", 1);
+            await textshow("Éramos los raros del pueblo.", 1, 1);
+
+            opcion5.style.display = "inline";
+        }
+
+        async function decision5() {
+            opcion5.style.display = "none";
+            opcion4.style.display = "none";
+
+            await textshow("Perdón, me pierdo un poco en mi cabeza cuando hablo de esto.", 1);
+            await textshow("Lo sé.", 2);
+            await textshow("Y no es el momento tampoco.", 2);
+            await textshow("No.", 1);
+            await textshow("Estoy bajo mucha presión.", 1, 1);
+
+            opcion6.style.display = "inline";
+            opcion7.style.display = "inline";
+        }
+
+
+        async function decision6() {
+            opcion6.style.display = "none";
+            opcion7.style.display = "none";
+
+            await textshow("¿No mejora el negocio?", 2);
+            await textshow("Es toda la economía.", 1);
+            await textshow("Estuve hablando algo de eso con mi padre.", 1);
+            await textshow("Argentina está muy mal, entrando en una crisis, dice, y nos va a afectar.", 1);
+            await textshow("Fue todo lo que dijo.", 1);
+            await textshow("Siempre le emboca en estas cosas.", 1);
+            await textshow("Si hay algo que puede predecir es el pánico de las masas.", 1);
+            await textshow("Ve venir las tormentas de frente.", 1);
+            await textshow("Y tiene razón en que tendría que haber elegido algo menos volátil que la publicidad.",1);
+            await textshow("Fui un estúpido.", 1);
+            await textshow("Pero es mi empresa.", 1);
+            await textshow("No puedo dejar que se hunda.", 1);
+
+            await textshow("No sos estúpido.", 2);
+            await textshow("Dejá de decir eso.", 2);
+            await textshow("Él me avisó que iba a ser así de difícil si cortaba por la mía.", 1);
+            await textshow("Yo no le creí.", 1);
+            await textshow("Ahora me pregunto si tendría que haber aceptado su plata.", 1);
+
+            await textshow("¿Cambiarías algo de lo que has hecho hasta ahora?", 2);
+            await textshow("Incluso si hubieras aceptado su inversión.", 2);
+
+            await textshow("No habría tenido opción.", 1);
+            await textshow("No lo conocés, es muy demandante.", 1);
+            await textshow("Quiere las cosas a su modo.", 1);
+            await textshow("Incluso después de salir del ejército, siguió siendo un militar.", 1);
+
+            await textshow("No la ibas a aceptar.", 2);
+            await textshow("Y ahora saldremos de esto de la misma forma en que entramos,", 2);
+            await textshow("por la nuestra.", 2);
+
+            await textshow("Busco y busco soluciones y cada vez me convenzo más de que hay apenas tres.", 1);
+            await textshow("Estoy entre la espada y la pared.", 1);
+            await textshow("Tres espadas, mejor dicho.", 1);
+            await textshow("Puedo elegir en cuál ensartarme:", 1);
+            await textshow("Puedo aceptar la plata que me acaba de ofrecer mi padre.", 1);
+            await textshow("Puedo cobrar menos y no invertir nada en la empresa.", 1);
+            await textshow("O puedo echar gente.", 1);
+
+            await textshow("¿Qué habría hecho tu padre?", 2);
+
+            await textshow("Para empezar, habría tenido la empresa en negro.", 1);
+            await textshow("Y los echaría a todos sin problemas.", 1);
+
+            await textshow("Te conozco, eso no es una opción real para vos.", 2);
+
+            await textshow("Tenés razón.", 1);
+
+            await textshow("Y la primera la descartaste hace años.", 2);
+
+            await textshow("Es tentadora.", 1);
+            await textshow("Se acabarían los problemas.", 1);
+
+            await textshow("Cambiarías uno por otro.", 2);
+            await textshow("En cuanto a la casa, podemos hacer ajustes.", 2);
+            await textshow("Hay cosas que son un lujo, y se pueden cortar. No es un sacrificio.", 2, 1);
+
+            opcion8.style.display = "inline";
+        }
+
+        async function decision7() {
+            opcion6.style.display = "none";
+            opcion7.style.display = "none";
+
+            await textshow("No sos el único.", 2);
+
+            await textshow("Lo sé.", 1);
+
+            await textshow("Creo que no sabés.", 2);
+            await textshow("Te veo trabajar mil horas, y yo me quedo en casa,", 2);
+            await textshow("cuidándola,", 2);
+            await textshow("llevándola al colegio y a la psicóloga,", 2);
+            await textshow("y taller de dibujo,", 2);
+            await textshow("que calculo que vamos a tener que recortar ahora,", 2);
+            await textshow("y a veces paso días sin hablar con otro ser humano que no seas vos, Víctor.", 2);
+            await textshow("Las maestras, y alguna otra madre, ponele.", 2);
+            await textshow("Nunca más de unos minutos.", 2);
+
+            await textshow("", 2);
+
+            await textshow("¿Te sentís sola?", 1);
+
+            await textshow("Sola de a ratos.", 2);
+            await textshow("Inútil en otros.", 2);
+            await textshow("Como que nunca llegué a ser un adulto entero.", 2);
+            await textshow("¿Entendés que nunca viví sola?", 2);
+            await textshow("Capaz que suena absurdo, pero me gustaría estudiar de vuelta.", 2);
+            await textshow("Algo de diseño.", 2);
+
+            await textshow("Claro, te sirve para complementar lo que habías aprendido de corte y confección.", 1,
+                1);
+
+            opcion8.style.display = "inline";
+        }
+
+        async function decision8() {
+            opcion8.style.display = "none";
+
+            await textshow("Estoy pensando en volver a trabajar.", 2);
+            await textshow("Puedo empezar haciendo ropa por encargue.", 2);
+            await textshow("No requiere inversión, porque ya tengo la máquina de coser vieja de mamá.", 2);
+            await textshow("Puedo pedir un adelanto para los materiales en cada pedido.", 2);
+
+            await textshow("¿Segura?", 1);
+
+            await textshow("Hace tiempo que lo vengo pensando.", 2);
+            await textshow("Yo sé que no va a generar mucha plata, pero lo necesito.", 2);
+            await textshow("Hay días que araño las paredes de frustración y aburrimiento.", 2);
+
+            await textshow("", 2);
+
+            await textshow("No sabía que te sentías así.", 1);
+            await textshow("¿Qué hacemos con ella?", 1);
+            await textshow(
+                "Va a tener que seguir en un colegio de horario completo para que puedas tener tiempo para tanta cosa.",
+                1);
+            await textshow("Y uno de los recortes que tenía pensado hacer era mandarla a escuela pública.", 1);
+            await textshow("Un año o dos, nada más.", 1);
+            await textshow("Me parece que importa más que vaya a un liceo privado que a un colegio.", 1);
+
+            await textshow("Podemos pedirle un descuento al colegio.", 2);
+
+            await textshow("Ya lo intenté.", 1);
+
+            await textshow("¿Fuiste a hablar con los curas sin mí?", 2);
+
+            await textshow("Sí.", 1);
+            await textshow("Te ponés nerviosa con estas conversaciones.", 1);
+
+            await textshow("¿No te parece que la decisión de tomar parte o no de esa conversación debería ser mía?",
+                2);
+
+            await textshow("Tampoco fue planificado.", 1);
+            await textshow("Lo conversé con el director en la última entrega de notas.", 1);
+
+            await textshow("¿Y? ¿Qué te dijo?", 2);
+
+            await textshow("Difícil.", 1, 1);
+
+            opcion9.style.display = "inline";
+            opcion10.style.display = "inline";
+        }
+
+        async function decision9() {
+            opcion9.style.display = "none";
+            opcion10.style.display = "none";
+
+            await textshow("Vos sabés que no tiene las mejores notas.", 1);
+            await textshow("Supongo que tenés razón.", 2);
+            await textshow("Sin embargo, yo tampoco las tenía.", 2);
+            await textshow("Y me sentí tan estúpida por tanto tiempo.", 2);
+            await textshow("Podemos buscarle otro colegio.", 2);
+            await textshow("Uno mejor.", 2);
+
+            await textshow("¿Mejor colegio, y a la vez una cuota menor?", 1);
+
+            await textshow("No hablo de un colegio con mil actividades y esas pavadas.", 2);
+            await textshow("Quiero uno donde no la hagan sentir mal sus propias maestras y directores.", 2);
+            await textshow("A eso me refiero.", 2);
+            await textshow("Donde pueda hacer amigos.", 2);
+            await textshow("Tiene literalmente un solo amigo.", 2);
+            await textshow("Los otros niños la tratan horrible porque no quiere jugar a las mismas cosas.", 2);
+
+            await textshow("Eso es porque se pasa jugando a la maquinita frente a la tele y mirando dibujos japoneses.", 1);
+
+            await textshow("Me están volviendo loca esos dibujitos,", 2);
+            await textshow("pero creo que no importa por qué es.", 2);
+            await textshow("Si los adultos no demuestran empatía, menos la van a demostrar los chicos.", 2);
+            await textshow("La psicóloga está de acuerdo conmigo.", 2);
+
+            await textshow("¿Sabés qué?", 1);
+            await textshow("Tenés razón.", 1);
+            await textshow("Olvidate del colegio de los curas.", 1);
+            await textshow("Ni tan cristianos resultaron ser.", 1);
+            await textshow("Vos conocés los colegios de la zona mejor que yo.", 1);
+            await textshow("¿Te animás a buscar?", 1);
+
+            await textshow("Claro.", 2);
+            await textshow("Y vamos juntos a verlos.", 2);
+
+            await textshow("Sí.", 1);
+            await textshow("Y pedimos juntos el descuento.", 1);
+
+            await textshow("Va a salir bien. Tranquilo.", 2);
+            await textshow("Tranquilo.", 2);
+            await textshow("Yo sé que te preocupas, pero estamos en una buena condición económica.", 2);
+            await textshow("Con un par de ajustes nos las vamos a arreglar.", 2);
+
+            await textshow("Esperemos.", 1);
+
+            await textshow("Y no tomes el mundo entero sobre tus hombros.", 2);
+            await textshow("Es imposible abarcar el infinito abanico de posibilidades vos solo.", 2);
+            await textshow("Los imprevistos van a suceder.", 2);
+            await textshow("Es imposible estar preparado para todo.", 2);
+            await textshow("Vos sabés que te podés abrir más conmigo.", 2);
+
+            await textshow("Gracias.", 1);
+
+            await textshow("Todo va a estar bien.", 2, 1);
+
+            await sleep(5000);
+            await textshow("", 1);
+            await sleep(5000);
+            location.reload();
+
+        }
+
+        async function decision10() {
+            opcion9.style.display = "none";
+            opcion10.style.display = "none";
+
+            await textshow("¿Es por la grafomanía?", 2);
+
+            await textshow("En parte.", 1);
+            await textshow("¿Decís que es grave?", 1);
+
+            await textshow("La psicóloga recomendó que la vea un neurólogo.", 2);
+            await textshow("Por eso y los problemas de concentración.", 2);
+
+            await textshow("No sé si te comenté, pero cuando yo era chico también tenía grafomanía.", 1);
+
+            await textshow("Nunca lo dijiste.", 2);
+
+            await textshow("Lo siento.", 1);
+            await textshow("No era mi intención ocultarlo.", 1);
+            await textshow("Es difícil porque me hace acordar de vuelta a mi infancia.", 1);
+            await textshow("Pero a mí se me pasó a los cinco o seis.", 1);
+            await textshow("Y Aurora tiene nueve ya.", 1);
+            await textshow("Está grande.", 1);
+
+            await textshow("¿Dibujabas flores compulsivamente como ella?", 2);
+
+            await textshow("No.", 1);
+            await textshow("Cuervos.", 1);
+            await textshow("Pájaros negros y ominosos.", 1);
+            await textshow("Enormes en comparación con las florcitas que pone ella en los márgenes de cualquier superficie.",1);
+            await textshow("Casi ni molestan las suyas comparadas con los desastres que pinté por mi casa.", 1);
+            await textshow("Mis padres estaban furibundos.", 1);
+            await textshow("A veces los cuervos ocupaban hojas enteras y tenía que hacer los deberes de vuelta.",
+                1);
+            await textshow("Los pájaros se comían mi trabajo.", 1);
+
+            await textshow("Sus flores pueden ser grandes también.", 2);
+            await textshow("Depende un poco de como se siente.", 2);
+            await textshow("Si está cansada, o enojada,", 2);
+            await textshow("o con miedo,", 2);
+            await textshow("las flores se expanden, conquistando terreno.", 2);
+            await textshow("O de si yo estoy enojada y con miedo.", 2);
+
+            await textshow("Necesito pedirte perdón.", 1);
+            await textshow("No me di cuenta que estabas llegando a estos límites.", 1);
+            await textshow(
+                "Estoy muy cerrado últimamente desde que me volví a hablar con mi viejo, y nos dió las noticias.",
+                1);
+
+            await textshow("Me di cuenta.", 2);
+
+            await textshow("Voy a hacer un esfuerzo por escucharte más.", 1);
+            await textshow("Por sentirte más.", 1);
+            await textshow("Y vamos a darle para adelante con tus planes.", 1);
+
+            await textshow("Yo sé que te cuesta abrirte.", 2);
+            await textshow("Gracias.", 2);
+            await textshow("Todo va a estar bien.", 1);
+            await textshow("", 1);
+
+            await textshow("Todo va a estar bien.", 1, 1);
+
+            await sleep(5000);
+            await textshow("", 1);
+            await sleep(5000);
+            location.reload();
+
+        }
+
+        async function textshow(guion, person, last) {
+            if (person == 1) {
+                text.style.color = "rgb(145, 229, 149)";
+                text.style.fontStyle = "normal";
+                // text.style.fontWeight = "bold";
+                text.style.textAlign = "left";
+            } else {
+                text.style.color = "rgb(68, 191, 255)";
+                text.style.fontStyle = "italic";
+                text.style.fontWeight = "normal";
+                text.style.textAlign = "right";
+            }
+            text.innerHTML = guion;
+            text.classList.remove("hide");
+            if (guion == "") {
+                await sleep(2500);
+            } else {
+                await sleep(1000);
+                await sleep(65 * guion.length);
+            }
+
+            if (last != 1) {
+                text.classList.add("hide");
+                await sleep(200);
+            }
+
+        }
+
+
+        function sleep(ms) {
+            return new Promise(
+                resolve => setTimeout(resolve, ms)
+            );
+        }
+    </script>
+
+</body>
+
+</html>
